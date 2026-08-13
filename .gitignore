@@ -1,0 +1,14 @@
+# The originals are large and only ever read by tools/build-images.py. They are
+# committed anyway — see below — but keep genuine scratch out.
+*.bak
+*.tmp
+.DS_Store
+Thumbs.db
+
+# Editor
+.idea/
+.vscode/
+*.swp
+
+# Nothing here needs node, but a stray install should not land in a commit.
+node_modules/

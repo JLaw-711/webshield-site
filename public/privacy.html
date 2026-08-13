@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en-ZA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy — WebShield</title>
+<meta name="description" content="What WebShield collects, what it deliberately does not collect, and how long any of it is kept.">
+<!-- NOINDEX ON PURPOSE. This page is published so the URL exists (Play requires
+     a reachable policy URL) but it still carries placeholder legal identity and
+     has not been reviewed by a lawyer. Remove this tag and add the footer link
+     on the homepage at the same time — not before. -->
+<meta name="robots" content="noindex, nofollow">
+<link rel="canonical" href="https://webshield.online/privacy">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/assets/fonts/plus-jakarta-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="nav">
+  <nav class="shell nav-inner" aria-label="Main">
+    <a class="brand" href="/">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2.5 4 5.5v6c0 4.6 3.4 8.4 8 9.9 4.6-1.5 8-5.3 8-9.9v-6l-8-3z" fill="#2A6EF2"/><path d="m8.6 12 2.3 2.3 4.5-4.6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      WebShield
+    </a>
+    <a class="nav-cta" href="/" style="margin-left:auto">Back to the site</a>
+  </nav>
+</header>
+
+<main id="main" class="shell legal">
+
+  <h1>Privacy Policy</h1>
+  <p class="updated">Last updated: 13 August 2026</p>
+
+  <div class="callout">
+    <p><strong>Draft — not yet in force.</strong> This policy was written from the actual database schema, the resolver configuration on our production server and the app&rsquo;s source code, so the facts in it are checked rather than aspirational. It still carries placeholder legal identity and has not been reviewed by a lawyer. It is published here so the wording can be reviewed.</p>
+  </div>
+
+  <p>WebShield is operated by <strong>[LEGAL ENTITY NAME]</strong>, [registration number], of [address], South Africa. Contact: <strong>[privacy@webshield.online]</strong>.</p>
+
+  <h2>1. The short version</h2>
+  <p>WebShield filters DNS &mdash; the lookup your device does to turn a name like <code>example.com</code> into an address &mdash; so that ads, trackers, malware and whatever else you choose are never reached.</p>
+  <p>To do that, we have to see your device&rsquo;s DNS queries as they happen. <strong>We do not keep them.</strong> There is no stored record, anywhere in this system, of which sites you or your family have visited. What we do keep is a <em>count</em>: how many lookups each profile made on each day. A number, with no domains attached to it.</p>
+  <p>We are a small South African operation. Your data is held on a server we run in Azure&rsquo;s South Africa North region, and it is not sold, rented or shared with advertisers.</p>
+
+  <h2>2. What we collect, and why</h2>
+
+  <h3>2.1 Your account</h3>
+  <div class="table-scroll">
+  <table>
+    <thead><tr><th>Data</th><th>Why</th><th>Where</th></tr></thead>
+    <tbody>
+      <tr><td>Email address</td><td>Signing in, and contacting you about your subscription</td><td><code>users.email</code></td></tr>
+      <tr><td>Display name</td><td>Shown in the app</td><td><code>users.display_name</code></td></tr>
+      <tr><td>Firebase user ID</td><td>The identifier your sign-in method gives us</td><td><code>users.firebase_uid</code></td></tr>
+      <tr><td>Your plan</td><td>Deciding what the service does for you</td><td><code>users.tier</code></td></tr>
+      <tr><td>Account and profile handles</td><td>An opaque identifier &mdash; <code>ws</code> followed by 16 hexadecimal characters &mdash; that tells our DNS resolver which filtering rules to apply. <strong>Your email address is never used for this</strong>, so a person watching DNS traffic cannot tell whose it is</td><td><code>users.ws_handle</code>, <code>profiles.ws_handle</code></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>Sign-in is handled by <strong>Firebase Authentication</strong>, a Google service. If you sign in with Google, Google knows you use WebShield. We never see or store your password.</p>
+
+  <h3>2.2 Your profiles</h3>
+  <p>You create profiles to give different people in your household different filtering. A profile has a name that you choose, and <strong>that name is very often a child&rsquo;s</strong> &mdash; the app suggests things like &ldquo;Emma, 8&rdquo;.</p>
+  <p>We treat those names as what they are: personal information about a minor, supplied by their parent or guardian. They are used for one thing only &mdash; labelling the profile in your app &mdash; and they are never used for advertising, profiling, or anything outside your own account. You can rename or delete a profile at any time from the Family screen.</p>
+
+  <h3>2.3 Your devices</h3>
+  <div class="table-scroll">
+  <table>
+    <thead><tr><th>Data</th><th>Why</th></tr></thead>
+    <tbody>
+      <tr><td>A device identifier</td><td>Recognising the same phone next time. It is a one-way hash of the Android ID, which is itself specific to this app on this device &mdash; it cannot be used to track you across other apps</td></tr>
+      <tr><td>Device name</td><td>So you can tell &ldquo;Emma&rsquo;s phone&rdquo; from &ldquo;Dad&rsquo;s phone&rdquo; in the app</td></tr>
+      <tr><td>App version</td><td>Diagnosing problems</td></tr>
+      <tr><td>When it last checked in</td><td>Telling you when a device stops reporting &mdash; the point of the Family screen&rsquo;s alerts</td></tr>
+      <tr><td>Whether protection was on when it last spoke</td><td>The same</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>2.4 Your usage &mdash; counts, not history</h3>
+  <p><strong>This is the part people care about most, so here it is exactly.</strong></p>
+  <p>Each day we store one row per profile: the date, and <strong>how many DNS lookups that profile made</strong>. That is the whole record. It contains no domains, no timestamps of individual queries and no indication of what was looked up.</p>
+  <p>We store it because the app shows you a seven-day chart, and because the underlying resolver cannot answer &ldquo;how many lookups yesterday&rdquo; &mdash; it only reports a running total &mdash; we sample that total hourly and record the difference ourselves.</p>
+  <p><strong>We do not keep a query log.</strong> Our resolver holds the most recent 1,000 queries in memory so that we can diagnose faults, which for an active household is roughly three minutes&rsquo; worth. It is never written to disk, and it is lost whenever the service restarts. Nothing reads it into any database of ours.</p>
+  <p>The resolver also keeps a 30-day running count of lookups per profile, again with no domains, which is the number our hourly sampler reads.</p>
+
+  <h3>2.5 Payment</h3>
+  <p>When subscriptions launch, purchases will be handled entirely by <strong>Google Play Billing</strong>. We receive confirmation that a subscription is active and what it covers. <strong>We never see your card number, bank details or billing address.</strong></p>
+
+  <h3>2.6 The early-access list on this website</h3>
+  <p>If you give us your email address on this website to be told when WebShield launches, we store that address, the date you gave it and the page you gave it on. We use it to send you <strong>one</strong> email, on the day the app is published, and for nothing else &mdash; no newsletter, no marketing, and it is never shared. Ask us at <strong>[privacy@webshield.online]</strong> and we will delete it immediately. It is deleted automatically once the launch email has been sent.</p>
+
+  <h3>2.7 What we never collect</h3>
+  <p>Not &ldquo;we collect but promise not to look at&rdquo; &mdash; these are not gathered at all:</p>
+  <ul>
+    <li><strong>Your browsing history.</strong> No stored list of the domains anyone looked up, per account or otherwise. This is a deliberate design decision, not an oversight: adding it would require a new database table and a new version of this policy.</li>
+    <li>Your location, contacts, photos, files, microphone or camera.</li>
+    <li>The content of anything you send or receive. WebShield only ever sees DNS lookups, never the pages themselves.</li>
+    <li>Any advertising identifier.</li>
+  </ul>
+
+  <h2>3. The VPN permission</h2>
+  <p>WebShield appears in Android as a VPN. It is not a VPN in the usual sense and it does not carry your internet traffic.</p>
+  <p>Android gives apps exactly one way to filter DNS device-wide, which is to register a VPN service. WebShield&rsquo;s tunnel is configured to capture <strong>only DNS</strong>: it advertises two DNS addresses and adds a route for those two addresses alone. Every other packet your phone sends &mdash; web, video, messaging, banking &mdash; goes out over your normal network without passing through WebShield at all. The app also excludes itself from its own tunnel.</p>
+  <p>Your DNS queries travel to our resolver over <strong>DNS-over-HTTPS on port 443</strong>, falling back to DNS-over-TLS on port 853, and the connection is certificate-pinned.</p>
+
+  <h2>4. Who else sees your data</h2>
+  <div class="table-scroll">
+  <table>
+    <thead><tr><th>Who</th><th>What</th><th>Why</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Google (Firebase Authentication)</strong></td><td>Email, sign-in identifier</td><td>Signs you in</td></tr>
+      <tr><td><strong>Google (Play Billing)</strong></td><td>Purchase records</td><td>Takes payment. We never see payment details</td></tr>
+      <tr><td><strong>Microsoft (Azure)</strong></td><td>Everything above, at rest</td><td>Hosts our server, in South Africa North</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>That is the complete list. <strong>We do not sell your personal information, and we do not share it with advertisers or data brokers.</strong></p>
+  <p>We may disclose data if South African law requires it. Because we do not hold browsing histories, a request for one cannot be satisfied &mdash; there is nothing to hand over.</p>
+
+  <h2>5. How long we keep it</h2>
+  <div class="table-scroll">
+  <table>
+    <thead><tr><th>Data</th><th>Kept for</th></tr></thead>
+    <tbody>
+      <tr><td>Live query log (in memory)</td><td>About three minutes, and never written to disk</td></tr>
+      <tr><td>Per-profile lookup counts (resolver)</td><td>30 days</td></tr>
+      <tr><td>Daily lookup counts (our database)</td><td>Until you delete your account</td></tr>
+      <tr><td>Account, profiles, devices</td><td>Until you delete your account</td></tr>
+      <tr><td>Sessions</td><td>Until they expire or you sign out</td></tr>
+      <tr><td>Early-access email address</td><td>Until the launch email is sent, or until you ask us to delete it</td></tr>
+      <tr><td>Billing records</td><td>As long as South African tax law requires</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h2>6. Your rights</h2>
+  <p>Under POPIA &mdash; and under the GDPR if you are in the EU &mdash; you may ask us to show you what we hold, correct it, delete it, or provide it in a portable form. Write to <strong>[privacy@webshield.online]</strong> and we will respond within 30 days.</p>
+  <p>Deleting your account removes your account row, your profiles, your devices, your daily counts, and the filtering profiles on our resolver.</p>
+  <p>You can also stop everything immediately without contacting anyone, by turning protection off in the app. Your device goes straight back to its normal DNS.</p>
+
+  <h2>7. Children</h2>
+  <p>WebShield is bought and configured by adults. A guardian creates profiles for the children in their household, and the only personal information we hold about a child is <strong>the profile name their parent typed</strong> and the counts and device details attached to that profile.</p>
+  <p>We do not knowingly collect information directly from children, we do not advertise, and we do not build profiles for any purpose beyond applying the filtering their guardian chose. A guardian can delete a child&rsquo;s profile at any time, which deletes its filtering configuration and its counts.</p>
+
+  <h2>8. Security</h2>
+  <ul>
+    <li>DNS is encrypted in transit (DNS-over-HTTPS, falling back to DNS-over-TLS) and the app pins the certificate authority, so a forged certificate cannot intercept it.</li>
+    <li>The account API is served over HTTPS.</li>
+    <li>Sign-in tokens are verified against Firebase on our server. Refresh tokens are stored <strong>only as a SHA-256 hash</strong> &mdash; a copy of our session table does not let anyone sign in as you.</li>
+    <li>The guardian PIN is stored hashed, never in plain text, and repeated guesses are rate-limited per device.</li>
+  </ul>
+  <p>No system is perfectly secure, and we will not pretend otherwise. If we discover a breach affecting your personal information, we will notify you and the Information Regulator as POPIA requires.</p>
+
+  <h2>9. Changes</h2>
+  <p>If we change this policy in a way that affects what we collect or who sees it, we will tell you in the app before it takes effect. The date at the top is the last change.</p>
+
+  <h2>10. Contact</h2>
+  <p><strong>[LEGAL ENTITY NAME]</strong><br>
+  [Address], South Africa<br>
+  <strong>[privacy@webshield.online]</strong></p>
+  <p>Information Regulator (South Africa): <a href="https://inforegulator.org.za" rel="noopener">inforegulator.org.za</a></p>
+
+</main>
+
+<footer class="footer">
+  <div class="shell footer-inner">
+    <a class="brand" href="/">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2.5 4 5.5v6c0 4.6 3.4 8.4 8 9.9 4.6-1.5 8-5.3 8-9.9v-6l-8-3z" fill="#2A6EF2"/><path d="m8.6 12 2.3 2.3 4.5-4.6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      WebShield
+    </a>
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="mailto:support@webshield.online">support@webshield.online</a>
+    </div>
+    <div class="footer-legal">
+      <span>&copy; 2026 WebShield Online. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
