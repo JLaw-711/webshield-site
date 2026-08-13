@@ -597,7 +597,16 @@ a:hover { color: var(--blue-dark); }
 
 /* ---------- photo band ---------------------------------------------------- */
 .band { position: relative; overflow: hidden; }
-.band img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
+/* 40%, not centre. The band is a very wide box and `cover` therefore crops the
+   height hard — at 1440px wide it keeps barely half the frame. Both faces sit in
+   the upper-middle of the photograph, so a centre crop takes the top of the
+   father's head off on a desktop and looks like a mistake. */
+.band img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+  position: absolute; inset: 0;
+}
 .band::after {
   content: '';
   position: absolute;

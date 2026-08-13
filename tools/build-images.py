@@ -23,8 +23,20 @@ TARGETS = {
     # Rendered at ~576x280 in the two-up pillar cards.
     "kids-card": ("family-kids.png", 1152, 560),
     "you-card": ("woman-cafe.png", 1152, 560),
-    # Full-bleed band. Cinematic crop, heavily overlaid with a dark gradient.
-    "family-band": ("family-kids.png", 1920, 900),
+    # Full-bleed band, at the source's own 1.79:1 rather than a wider crop.
+    #
+    # Deliberately NOT upscaled. The source is 1376x768 and the band renders at
+    # most ~1440x420, so a "2x" output would be 2880px of invented pixels: LANCZOS
+    # cannot add detail that is not there, and the browser's own upscale from the
+    # native file looks the same for a third of the bytes. It also sits under a
+    # heavy dark gradient with text over it, which is the most forgiving place on
+    # the page for a soft pixel.
+    #
+    # The band crops HEIGHT (object-fit: cover on a very wide box), so where the
+    # crop lands matters more than the size. Both faces sit in the upper-middle of
+    # this frame, which is why site.css pins object-position to 40% rather than
+    # letting a centre crop take the father's head off.
+    "family-band": ("family-banner.png", 1376, 768),
 }
 
 QUALITY_WEBP = 82
