@@ -866,6 +866,10 @@ a:hover { color: var(--blue-dark); }
 .footer-inner { padding-block: 44px; display: flex; align-items: center; gap: 32px; flex-wrap: wrap; }
 .footer .brand { color: #fff; font-size: 1rem; }
 .footer .brand:hover { color: #fff; }
+.footer-brand { display: flex; flex-direction: column; gap: 8px; }
+/* The brand line. Deliberately quiet — it restates the <h1> for anyone who scrolled
+   past it, and it must not compete with the links beside it. */
+.footer-tagline { margin: 0; font-size: 0.84375rem; line-height: 1.45; color: var(--ink-faint); }
 .footer-links { display: flex; gap: 24px; font-size: 0.84375rem; margin-left: auto; flex-wrap: wrap; }
 .footer-links a { color: var(--ink-faint); }
 .footer-links a:hover { color: #fff; }
