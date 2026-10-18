@@ -16,7 +16,9 @@
 #     SSH but cannot sudo, and every path here is root-owned.
 set -euo pipefail
 
-HOST="${WEBSHIELD_HOST:-jeremyl@20.164.230.236}"
+# The server's Tailscale address. Public SSH (port 22 on 20.164.230.236) was closed on
+# 2026-10-18, so this machine must be on the tailnet.
+HOST="${WEBSHIELD_HOST:-jeremyl@100.98.31.98}"
 KEY="${WEBSHIELD_KEY:-$HOME/.ssh/ws.pem}"
 REMOTE_ROOT="/opt/webshield-site"
 LOCAL_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
